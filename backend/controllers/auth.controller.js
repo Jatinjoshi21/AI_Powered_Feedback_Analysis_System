@@ -96,7 +96,36 @@ async function login(req, res) {
   }
 }
 
+async function logout(req, res) {
+  try {
+    res.clearCookie("token");
+    res.json({
+      message: "Success",
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+}
+
+async function getMe(req,res){
+    try{
+        const user = req.user;
+        res.json({
+            message: "Success",
+            user,
+        });
+    }catch(err){
+        res.status(500).json({
+            message: err.message,
+        });
+    }
+}
+
 module.exports = {
   register,
   login,
+  logout,
+  getMe,
 };
