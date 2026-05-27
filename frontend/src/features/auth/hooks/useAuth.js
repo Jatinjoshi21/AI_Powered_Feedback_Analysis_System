@@ -1,63 +1,82 @@
-import {AuthContext} from "../context/auth.context"
-import { useContext, useState, useEffect } from "react";
-import { loginUser,registerUser } from "../services/auth.api";
+import { useContext, useEffect } from "react";
 
-export default function useAuth() {
-    const {loading, user, setUser, setLoading} = useContext(AuthContext);
+import { AuthContext } from "../store/auth.store";
 
-    async function login({email, password}){
-        setLoading(true);
-        try{
-            const res = await axios.post("http://localhost:5000/api/auth/login",{email,password});
-            setUser(res.user);
-            setLoading(false);
-        }catch(err){
-            console.log(err);
-            setLoading(false);
-            throw err;
-        }
+import { login, logout, register, getMe } from "../services/auth.api";
 
+export function useAuth() {
+  const { loading, user, setUser, setLoading } = useContext(AuthContext);
+
+  async function handleLogin({ username, email, password }) {
+    try {
+      setLoading(true);
+      const result = await login({ username, email, password });
+      setUser(result.user);
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setLoading(false);
+      throw err;
+    }
+  }
+
+  async function handleRegister({ username, email, password }) {
+    try {
+      setLoading(true);
+      const result = await register({ username, email, password });
+      setUser(result.user);
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setLoading(false);
+      throw err;
+    }
+  }
+
+  async function handleLogout() {
+    try {
+      setLoading(true);
+      const result = await logout();
+      setUser(null);
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setLoading(false);
+      throw err;
+    }
+  }
+
+  async function getUser() {
+    try {
+      setLoading(true);
+      const result = await getMe();
+      setUser(result.user);
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setLoading(false);
+      throw err;
+    }
+  }
+
+  useEffect(() => {
+    async function loadUser() {
+      try {
+        await getUser();
+      } catch (err) {
+        console.log(err);
+      }
     }
 
-    async function register({username, email, password}){
-        setLoading(true);
-        try{
-            const res = await axios.post("http://localhost:5000/api/auth/register",{username, email, password});
-            setUser(res.user);
-            setLoading(false);
-        }catch(err){
-            console.log(err);
-            setLoading(false);
-            throw err;
-        }
-    }
+    loadUser();
+  }, []);
 
-    async function logout(){
-        setLoading(true);
-        try{
-           const res = await axios.get("http://localhost:5000/api/auth/logout");
-            setUser(null);
-            setLoading(false);
-        }catch(err){
-            console.log(err);
-            setLoading(false);
-            throw err;
-        }
-    }
-
-    async function getMe(){
-        setLoading(true);
-        try{
-            const res = await axios.get("http://localhost:5000/api/auth/profile");
-            setUser(res.user);
-            setLoading(false);
-        }catch(err){
-            console.log(err);
-            setLoading(false);
-        }
-    }
-
-    return {
-      loading,user,login,register,logout,init
-    }
+  return {
+    handleLogin,
+    handleRegister,
+    handleLogout,
+    getUser,
+    loading,
+    user,
+  };
 }

@@ -1,12 +1,23 @@
-import React from 'react'
-import { router } from './app.routes'
-import { RouterProvider } from 'react-router'
+import React from "react";
 
-export const App = () => {
-  const router = router();
+import { RouterProvider } from "react-router-dom";
+
+import { router } from "./app.routes";
+
+import { AuthProvider } from "./features/auth/store/auth.store";
+
+import { AuthContext } from "./features/auth/store/auth.store";
+import { CampaignProvider } from "./features/campaigns/store/campaign.store";
+
+
+
+export default function App() {
   return (
-    <RouterProvider router={router}>
-      <div>App</div>
-    </RouterProvider>
-  )
+    <AuthProvider>
+      <CampaignProvider>
+
+      <RouterProvider router={router} />
+      </CampaignProvider>
+    </AuthProvider>
+  );
 }

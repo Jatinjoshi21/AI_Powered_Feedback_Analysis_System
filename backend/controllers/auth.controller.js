@@ -112,7 +112,7 @@ async function logout(req, res) {
 async function getMe(req,res){
     try{
         const user = req.user;
-        res.json({
+        res.status(200).json({
             message: "Success",
             user,
         });

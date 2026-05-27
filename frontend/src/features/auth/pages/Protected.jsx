@@ -1,10 +1,19 @@
 import { Navigate } from "react-router-dom";
+
 import { useAuth } from "../hooks/useAuth";
 
 export default function ProtectedRoute({ children }) {
-  const token = useAuth((s) => s.token);
+  const {
+    loading,
 
-  if (!token) {
+    user,
+  } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
     return <Navigate to="/" />;
   }
 

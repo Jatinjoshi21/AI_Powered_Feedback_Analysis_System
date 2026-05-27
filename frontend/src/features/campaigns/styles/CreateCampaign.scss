@@ -1,0 +1,45 @@
+.create {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 48px;
+
+  background: linear-gradient(135deg, #0b1120, #111827);
+}
+
+.create__card {
+  width: 100%;
+
+  max-width: 760px;
+
+  padding: 42px;
+
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.create__header {
+  margin-bottom: 36px;
+
+  h1 {
+    font-size: 40px;
+
+    color: white;
+
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: #94a3b8;
+  }
+}
