@@ -8,10 +8,8 @@ import ProtectedRoute from "./features/auth/pages/Protected";
 import CampaignList from "./features/campaigns/pages/CampaignList";
 import CampaignDetails from "./features/campaigns/pages/CampaignDetails";
 import CreateCampaign from "./features/campaigns/pages/CreateCampaign";
-
-const Dashboard = () => <h1>Dashboard</h1>;
-
-const Feedback = () => <h1>Feedback</h1>;
+import Feedback from "./features/feedback/pages/Feedback";
+import Dashboard from "./features/dashboard/pages/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +25,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/dashboard",
+    path: "/dashboard/:id",
 
     element: (
       <ProtectedRoute>
@@ -46,11 +44,6 @@ export const router = createBrowserRouter([
     ),
   },
 
-  {
-    path: "/feedback/:slug",
-
-    element: <Feedback />,
-  },
   {
 
 path:
@@ -80,6 +73,17 @@ element:
 <CreateCampaign/>
 
 </ProtectedRoute>
+
+},
+
+{
+
+path:
+
+"/feedback/:slug",
+
+element:
+<Feedback/>
 
 }
 ]);

@@ -28,11 +28,6 @@ export async function getCampaign(id) {
   return response.data;
 }
 
-export async function generateQR(id) {
-  const response = await API.get(`/campaigns/${id}/qr`);
-
-  return response.data;
-}
 
 export async function getQR(id) {
   const response = await API.get(`/campaigns/${id}/qr`);

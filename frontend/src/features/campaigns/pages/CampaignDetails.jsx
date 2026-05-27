@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 
 import "../styles/CampaignDetails.scss"
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { useCampaign } from "../hooks/useCampaign";
 
+import { useNavigate } from "react-router-dom";
+
 export default function CampaignDetails() {
+
+    const navigate = useNavigate();
+
   const { id } = useParams();
 
   const {
@@ -34,7 +39,7 @@ export default function CampaignDetails() {
   async function createQR() {
     const result = await generateQR(id);
 
-    setQr(result.qr);
+    setQr(result.feedbackUrl);
   }
 
   if (!campaign) {
@@ -59,12 +64,12 @@ export default function CampaignDetails() {
             Generate QR
           </button>
 
-          <button className="details__secondary">View Analytics</button>
+          <button className="details__secondary" onClick={() => { navigate(`/dashboard/${id}`); }}>View Analytics</button>
         </div>
 
         {qr && (
           <div className="details__qr">
-            <img src={qr} alt="qr" />
+            <Link to={ `${qr}` } >Click to give Feedback</Link>
           </div>
         )}
       </div>
