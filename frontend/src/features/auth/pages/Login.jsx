@@ -27,9 +27,7 @@ export default function Login() {
   return (
     <div className="login">
       <div className="login__card">
-        <h1>VoicePulse</h1>
-
-        <p>Turn voice into insights</p>
+        <h1>Login</h1>
 
         <form onSubmit={submit}>
           <div className="login__field">

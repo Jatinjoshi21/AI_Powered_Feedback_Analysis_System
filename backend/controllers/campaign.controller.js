@@ -262,7 +262,7 @@ async function getAnalytics(req, res) {
 
       averageScore: avg,
 
-      recentFeedback: feedback.slice(-5).map((f) => ({
+      recentFeedback: feedback.slice(-3).map((f) => ({
         transcript: f.transcript,
 
         sentiment: f.sentimentLabel,

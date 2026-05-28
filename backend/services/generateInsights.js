@@ -48,8 +48,6 @@ Return ONLY JSON:
 
 executiveSummary:"",
 
-customerMood:"",
-
 topStrengths:[],
 
 criticalIssues:[],
@@ -58,14 +56,7 @@ emergingPatterns:[],
 
 recommendedActions:[],
 
-priority:""
-
 }
-
-priority:
-low
-medium
-high
 
 `,
       },

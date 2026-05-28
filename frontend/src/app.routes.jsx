@@ -10,10 +10,17 @@ import CampaignDetails from "./features/campaigns/pages/CampaignDetails";
 import CreateCampaign from "./features/campaigns/pages/CreateCampaign";
 import Feedback from "./features/feedback/pages/Feedback";
 import Dashboard from "./features/dashboard/pages/Dashboard";
+import Home from "./features/landingpage/pages/Home"
 
 export const router = createBrowserRouter([
-  {
+
+    {
     path: "/",
+
+    element: <Home />,
+  },
+  {
+    path: "/login",
 
     element: <Login />,
   },

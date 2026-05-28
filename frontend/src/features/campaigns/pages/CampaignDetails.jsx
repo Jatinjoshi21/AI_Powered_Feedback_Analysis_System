@@ -69,7 +69,7 @@ export default function CampaignDetails() {
 
         {qr && (
           <div className="details__qr">
-            <Link to={ `${qr}` } >Click to give Feedback</Link>
+            <Link to={ `${qr}` } style={{color:"white", textDecoration:"none", cursor:"pointer", fontWeight:"bold"}} >Click to give Feedback</Link>
           </div>
         )}
       </div>
